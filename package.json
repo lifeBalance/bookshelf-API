@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-     "start": "node app.js"
+    "start": "gulp"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+  },
   "devDependencies": {
-    "express": "^4.13.4"
+    "gulp": "^3.9.1"
   }
 }
