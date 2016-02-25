@@ -102,4 +102,4 @@ In the next section we'll start implementing the routing for our API.
 [3]: http://gulpjs.com/
 [4]: https://www.npmjs.com/package/gulp-nodemon
 [5]: http://nodemon.io/
-[6]: https://github.com/lifeBalance/bookshelf-API
+[6]: https://github.com/lifeBalance/bookshelf-API/tree/01-getting-started
