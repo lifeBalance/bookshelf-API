@@ -1,7 +1,8 @@
 # What is REST
-The acronym **REST** (sometimes spelled ReST) stands for _**Re**presentational **S**tate **T**ransfer_, and it was coined in 2000 by [Roy Fielding][2] in his Ph.D dissertation at the University of California, Irvine.
+The acronym **REST** (sometimes spelled ReST) stands for _**Re**presentational **S**tate **T**ransfer_, and it was coined in 2000 by [Roy Fielding][1] in his Ph.D dissertation at the University of California, Irvine.
 
-> The dissertation can be found [here][1]
+> The dissertation was titled **Architectural Styles and
+the Design of Network-based Software Architectures** and can be found [here][2]
 
 ReST is a [software architectural style][3] usually used when building Web services. ReST can be described as a lightweight approach, especially when compared to more heavyweight solutions such as [SOAP][6].
 
@@ -89,7 +90,7 @@ The HTTP Verb that is used in the request determines the type of action we want 
 
 * `PATCH` requests are also used for **updating** resources, but only partially, meaning the request only needs to contain the changes to the resource, not the complete resource. This doesn't mean that the body of the `PATCH` request only contains the modified part of the resource. On the contrary, `PATCH` body should a set of instructions describing how a resource currently residing on the server should be modified to produce a new version. This set of instructions must use some kind of patch language like [JSON Patch][7] or [XML Patch][8].
 
-> Read more about building JSON APIs [here][9], and about JSON Patch [here][10]
+  > Read more about building JSON APIs [here][9], and about JSON Patch [here][10]
 
   `PATCH` requests are not **safe** for obvious reasons. They are not **idempotent** either, although they can be designed in such a way as to be idempotent, which also helps prevent bad outcomes from collisions between two PATCH requests on the same resource in a similar time frame. Collisions from multiple PATCH requests may be more dangerous than PUT collisions because some patch formats need to operate from a known base-point or else they will corrupt the resource. Clients using this kind of patch application should use a conditional request such that the request will fail if the resource has been updated since the client last accessed the resource. For example, the client can use a strong ETag in an If-Match header on the PATCH request.
 
@@ -131,9 +132,9 @@ These levels should be seen as a whole, Roy Fielding himself made clear that lev
 [:arrow_backward:][back] ║ [:house:][home] ║ [:arrow_forward:][next]
 
 <!-- navigation -->
-[home]: #
-[back]: #
-[next]: README/intro.md
+[home]: ../README.md
+[back]: ../README.md
+[next]: getting_started.md
 
 
 <!-- links -->
