@@ -11,21 +11,21 @@ ReST is a [software architectural style][3] usually used when building Web servi
 ## Constraints
 Basically, ReST imposes a series of constraints about the design of Web services. If the resulting application comply with these constraints, it can be described as **ReSTful**. These constraints are **six**:
 
-### Client-server
+### 1. Client-server
 There must be a **separation of concerns** between the client and the server, meaning that clients should not be concerned with server details, such as data storage. By the same token, servers are not concerned with client aspects, such as the current state of the UI.
 
-### Stateless
+### 2. Stateless
 Every client request must include all the information necessary to service the request. This means that session state is responsibility of the client, and must be sent on each request. This aspect is especially useful when our application scales up, and we need to introduce new servers. We don't have to worry about which server is gonna handle the request, since all the needed information is gonna be send by the client on every request.
 
-### Caching
+### 3. Caching
 Sometimes the response to the client doesn't need to include data that doesn't change very often. In these situations is useful that clients or intermediaries cache that information so the server doesn't have to send it again. There's also some data that changes all the time, that's why responses must define themselves (implicitly or explicitly) as **cacheable**, or **not cacheable**.
 
 When caching data, special care must be taken to avoid that the client reuses **stale data**, so if the cached data has changed it must be send again, of course.
 
-### Layered system
+### 4. Layered system
 A client cannot ordinarily tell whether it is connected directly to the end server, or to an intermediary along the way. Intermediary servers may improve system scalability by enabling load balancing and by providing shared caches. They may also enforce security policies.
 
-### Uniform interface
+### 5. Uniform interface
 This constraint is **fundamental** in the design of a ReST service. It describes the characteristics of the interface between the server and the client, in order to get a decoupled architecture where the client side and the server side may evolve independently. This interface is **resource based**, meaning that everything evolves around the concept of **resources**.
 
 Resources are designed using **nouns**. This is important when we compare REST with other styles such as SOAP, which are based on actions. A resource is a noun that is **unique**, can be represented as data and has at least one URI. Some examples of a resource could be:
@@ -111,6 +111,9 @@ HTTP Verb         | CRUD Action
 `GET`             | Read
 `UPDATE`, `PATCH` | Update
 `DELETE`          | Delete
+
+### 6. Code on Demand
+This is the only **optional** constraint of the REST architecture. Servers can temporarily extend or customize the functionality of a client by the transfer of executable code. An example of this constraint would be client-side JavaScript.
 
 ## The Richardson Maturity Model
 It's a model developed by [Leonard Richardson][12] to measure the level of compliance of our Web service with the constraints defined in the ReST architectural style. It has four levels, starting counting at 0:
