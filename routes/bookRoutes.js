@@ -1,17 +1,18 @@
 var express = require('express');
 var router = express.Router();
 
-var Book = require('../models/Book');
+var bookRouter = function (Book) {
 
-router.route('/')
-  .get(function (req, res) {
-    Book.find(function (err, books) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.json(books);
-      }
-    });
-  });
+  // Bringing in the controller
+  var bookController = require('../controllers/bookController')(Book);
 
-module.exports = router;
+  router.route('/')
+    .get(bookController.index);
+
+  router.route('/:bookId')
+    .get(bookController.show);
+
+  return router; // Don't forget to return the router!
+};
+
+module.exports = bookRouter;

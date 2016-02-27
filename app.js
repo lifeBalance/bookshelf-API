@@ -4,8 +4,11 @@ require('dotenv').config();
 var express = require('express');
 var app = express();
 
+// Bringing in the model
+var Book = require('./models/Book');
+
 // Bringing in the router
-var bookRouter = require('./routes/bookRoutes');
+var bookRouter = require('./routes/bookRoutes')(Book);
 
 var database = require('./database');
 
