@@ -1,0 +1,50 @@
+[
+  {
+    "author": "Neal Stephenson",
+    "genre": "Science Fiction",
+    "title": "Snowcrash",
+    "read": true
+  },
+  {
+    "author": "H. G. Wells",
+    "genre": "Science Fiction",
+    "title": "The Time Machine",
+    "read": true
+  },
+  {
+    "author": "Philip K. Dick",
+    "genre": "Science Fiction",
+    "title": "The Man in the High Castle",
+    "read": true
+  },
+  {
+    "author": "Philip K. Dick",
+    "genre": "Science Fiction",
+    "title": "Do Androids Dream of Electric Sheep?",
+    "read": true
+  },
+  {
+    "author": "Jack Kerouac",
+    "genre": "Historical Fiction",
+    "title": "The Dharma Bums",
+    "read": true
+  },
+  {
+    "author": "Jack Kerouac",
+    "genre": "Historical Fiction",
+    "title": "On the Road",
+    "read": true
+  },
+  {
+    "author": "Aldous Huxley",
+    "genre": "Utopian Fiction",
+    "title": "Island",
+    "read": true
+  },
+  {
+    "author": "Aldous Huxley",
+    "genre": "Distopian Fiction",
+    "title": "Brave New World",
+    "read": true
+  }
+]

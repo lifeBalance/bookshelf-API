@@ -93,7 +93,7 @@ In the next section we'll start implementing the routing for our API.
 <!-- navigation -->
 [home]: ../README.md
 [back]: intro_rest.md
-[next]: #
+[next]: get_requests.md
 
 
 <!-- links -->
