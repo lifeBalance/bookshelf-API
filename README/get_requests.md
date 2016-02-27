@@ -1,5 +1,5 @@
 # GET requests
-In this section we're going to start implementing our API. We're gonna start taking care of `GET` requests and sending back a list of items or a single one. We'll also going to need installed [MongoDB][1] and [Mongoose][2] to store the data we want to serve through our API.
+In this section we're going to start implementing our API. We're gonna start taking care of `GET` requests and sending back the whole list of books. We'll also going to need installed [MongoDB][1] and [Mongoose][2] to store the data we want to serve through our API.
 
 ## A routes folder
 To keep the **entry point** of our application (the `app.js` file) as clean an uncluttered as possible, we're going to take the API's routing to a separate file. First of all let's create a folder named `routes`, and inside it we're gonna create a file named `bookRoutes.js`:
@@ -139,10 +139,10 @@ To start playing, we have to fill our database with some data. For that purpose 
 ]
 ```
 
-If you want you can check the file [here][7]. We could import this dataset using a command provided by MongoDB named `mongoimport`, but we want our data to follow the `Book` schema we've defined, so we're going to write a simple seed file. I've added two versions:
+If you want you can check the `.json` data file [here][6]. We could import this dataset using a command provided by MongoDB named `mongoimport`, but we want to model our data using Mongoose schemas, in this case the `Book` schema we've just defined, so we're going to write a simple seed file. I've added two versions:
 
-* One using callbacks [here][8].
-* Another one using Promises [here][9].
+* One using callbacks [here][7].
+* Another one using Promises [here][8].
 
 Use any of them. You shouldn't have any trouble groking them, both are well commented. And since you probably are gonna want to seed the database more than once, (at least I mess up with the data a lot, best way of learning) add any of them to your `package.json`:
 ```json
@@ -152,7 +152,7 @@ Use any of them. You shouldn't have any trouble groking them, both are well comm
 Now seed the database running: `$ npm run seed`.
 
 ## Sending all the books
-At the beginning of this section, we started serving some dummy data our our `bookRoutes.js`. Now we want to pull that data out of our database. First of all, we'll start showing our whole collection of books to `GET` requests to `/api/books` and we want to use  our `Book` model to do that. So let's start by requiring the model file in the route:
+At the beginning of this section, we started serving some dummy data our our `bookRoutes.js`. Now we want to pull that data out of our database. First of all, we'll start sending back our whole collection of books to `GET` requests to `/api/books` and we need to use the `find` method on our `Book` model to do that. So let's start by requiring the model file in the route:
 ```js
 var express = require('express');
 var router = express.Router();
@@ -173,9 +173,9 @@ router.route('/')
 module.exports = router;
 ```
 
-Now if we point our browser to http://localhost:800/api/books we should see the whole collections of books we have in our database.
+Now if we point our browser to [http://localhost:800/api/books][9] we should see the whole collections of books we have in our database.
 
-> Check the [02-routing][666] branch to see the current state of the code.
+> Check the [02-routing][10] branch to see the current state of the code.
 
 ---
 [:arrow_backward:][back] ║ [:house:][home] ║ [:arrow_forward:][next]
@@ -192,7 +192,8 @@ Now if we point our browser to http://localhost:800/api/books we should see the 
 [3]: https://github.com/lifeBalance/notes-mongodb
 [4]: https://github.com/lifeBalance/mongoose_experiments
 [5]: https://www.npmjs.com/package/dotenv
-[6]: https://github.com/lifeBalance/bookshelf-API/tree/02-routing
-[7]: https://github.com/lifeBalance/dataset.json
-[8]: https://github.com/lifeBalance/seed.js
-[9]: https://github.com/lifeBalance/seed-promises.js
+[6]: https://github.com/lifeBalance/dataset.json
+[7]: https://github.com/lifeBalance/seed.js
+[8]: https://github.com/lifeBalance/seed-promises.js
+[9]: http://localhost:800/api/books
+[10]: https://github.com/lifeBalance/bookshelf-API/tree/02-routing
