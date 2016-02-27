@@ -1,4 +1,4 @@
-# GET requests
+# GET requests I
 In this section we're going to start implementing our API. We're gonna start taking care of `GET` requests and sending back the whole list of books. We'll also going to need installed [MongoDB][1] and [Mongoose][2] to store the data we want to serve through our API.
 
 ## A routes folder
@@ -183,7 +183,7 @@ Now if we point our browser to [http://localhost:800/api/books][9] we should see
 <!-- navigation -->
 [home]: ../README.md
 [back]: getting_started.md
-[next]: #
+[next]: get_requests_2.md
 
 
 <!-- links -->

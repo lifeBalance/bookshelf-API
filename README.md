@@ -5,7 +5,8 @@ In this project I'll be creating a ReSTful API using Node.js. It'll be as simple
 
 * [What is ReST][c1]
 * [Getting started][c2]
-* [GET requests. Routing and hooking up to the db][c3]
+* [GET requests I. Routing and hooking up to the db][c3]
+* [GET requests II. Refactoring request handlers into controllers][c4]
 
 
 ---
@@ -24,3 +25,4 @@ In this project I'll be creating a ReSTful API using Node.js. It'll be as simple
 [c1]: README/intro_rest.md
 [c2]: README/getting_started.md
 [c3]: README/get_requests.md
+[c4]: README/get_requests_2.md

@@ -1,4 +1,4 @@
-# More GET requests
+# GET requests II. Controllers
 In this section we're going to take care of `GET` requests for **single books**. We'll also going to refactor our code to start using **controllers** and injecting whatever we need into our route file.
 
 ## Refactoring our route I: Injecting our model
@@ -131,7 +131,7 @@ We've sanitized a bit the received query before sending it to the database. Basi
 
 <!-- navigation -->
 [home]: ../README.md
-[back]: getting_started.md
+[back]: get_requests.md
 [next]: #
 
 
