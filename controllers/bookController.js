@@ -28,9 +28,17 @@ var bookController = function (Book) {
     });
   }
 
+  var create = function (req, res) {
+    var book = new Book(req.body);
+    book.save(); // Save the book to the db.
+    res.status(201).send(book);
+    console.log(`* The book ${book} has been posted!`);
+  }
+
   return {
     index: index,
-    show: show
+    show: show,
+    create: create
   };
 };
 

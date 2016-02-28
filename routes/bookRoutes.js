@@ -7,7 +7,8 @@ var bookRouter = function (Book) {
   var bookController = require('../controllers/bookController')(Book);
 
   router.route('/')
-    .get(bookController.index);
+    .get(bookController.index)
+    .post(bookController.create);
 
   router.route('/:bookId')
     .get(bookController.show);

@@ -132,7 +132,7 @@ We've sanitized a bit the received query before sending it to the database. Basi
 <!-- navigation -->
 [home]: ../README.md
 [back]: get_requests.md
-[next]: #
+[next]: post_requests.md
 
 
 <!-- links -->
