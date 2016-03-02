@@ -17,17 +17,6 @@ var bookController = function (Book) {
     });
   }
 
-  var show = function (req, res) {
-    Book.findById(req.params.bookId, function (err, book) {
-      if (err) {
-        console.log(err);
-        res.status(404).send(err);
-      } else {
-        res.json(book);
-      }
-    });
-  }
-
   var create = function (req, res) {
     var book = new Book(req.body);
     book.save(); // Save the book to the db.
@@ -35,10 +24,26 @@ var bookController = function (Book) {
     console.log(`* The book ${book} has been posted!`);
   }
 
+  var show = function (req, res) {
+    res.json(req.book);
+  };
+
+  var update = function (req, res) {
+    req.book.author = req.body.author;
+    req.book.genre  = req.body.genre;
+    req.book.title  = req.body.title;
+    req.book.read   = req.body.read;
+    req.book.save();
+
+    console.log(`* The book ${req.book} has been updated!\n`);
+    res.status(200).json(req.book);
+  };
+
   return {
     index: index,
     show: show,
-    create: create
+    create: create,
+    update: update
   };
 };
 

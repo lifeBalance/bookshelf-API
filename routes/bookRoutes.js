@@ -10,8 +10,11 @@ var bookRouter = function (Book) {
     .get(bookController.index)
     .post(bookController.create);
 
+  // Mounting middleware for the `/books/api/:bookId` path.
+  router.use('/:bookId', require('../middlewares/findBookById')(Book));
   router.route('/:bookId')
-    .get(bookController.show);
+    .get(bookController.show)
+    .put(bookController.update);
 
   return router; // Don't forget to return the router!
 };

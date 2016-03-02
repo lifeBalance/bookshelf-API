@@ -8,6 +8,7 @@ In this project I'll be creating a ReSTful API using Node.js. It'll be as simple
 * [GET requests I. Routing and hooking up to the db][c3]
 * [GET requests II. Refactoring request handlers into controllers][c4]
 * [POST requests][c5]
+* [PUT requests][c6]
 
 
 ---
@@ -28,3 +29,4 @@ In this project I'll be creating a ReSTful API using Node.js. It'll be as simple
 [c3]: README/get_requests.md
 [c4]: README/get_requests_2.md
 [c5]: README/post_requests.md
+[c6]: README/put_requests.md

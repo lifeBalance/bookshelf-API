@@ -100,7 +100,7 @@ And that's it, start the server if it's not running, execute the `post.sh` cURL 
 <!-- navigation -->
 [home]: ../README.md
 [back]: get_requests_2.md
-[next]: #
+[next]: put_requests.md
 
 
 <!-- links -->
