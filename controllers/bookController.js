@@ -29,14 +29,19 @@ var bookController = function (Book) {
   };
 
   var update = function (req, res) {
-    req.book.author = req.body.author;
-    req.book.genre  = req.body.genre;
-    req.book.title  = req.body.title;
-    req.book.read   = req.body.read;
-    req.book.save();
+    for (var p in req.body) {
+      req.book[p] = req.body[p];
+    }
 
-    console.log(`* The book ${req.book} has been updated!\n`);
-    res.status(200).json(req.book);
+    req.book.save(function (err) {
+      if (err) {
+        console.log(err);
+        res.status(500).send(err);
+      } else {
+        console.log(`* The book ${req.book} has been updated!\n`);
+        res.status(200).json(req.book);
+      }
+    });
   };
 
   return {

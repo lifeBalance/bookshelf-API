@@ -11,18 +11,17 @@ router.route('/:bookId')
 And then, in our `bookController.js` file we'll add the handler to deal with the requests to the endpoint we've just created:
 ```js
 var update = function (req, res) {
-  Book.findById(req.params.bookId, function (err, book) {
+  for (var p in req.body) {
+    req.book[p] = req.body[p];
+  }
+
+  req.book.save(function (err) {
     if (err) {
       console.log(err);
-      res.status(404).send(err);
+      res.status(500).send(err);
     } else {
-      book.title  = req.body.title;
-      book.author = req.body.author;
-      book.genre  = req.body.genre;
-      book.read   = req.body.read;
-      book.save();
-
-      res.json(book);
+      console.log(`* The book ${req.book} has been updated!\n`);
+      res.status(200).json(req.book);
     }
   });
 };
@@ -33,7 +32,9 @@ return {
 };
 ```
 
-As you can see, in order to update a given book in the database, we need to define the book we want to update, and that's done using the same logic we used for the `show` handler, so we are repeating ourselves a bit but don't worry, we'll deal with that later. In this case the new part is where we replace the content of each of the fields in the found book, with the data included in the `PUT` request payload, accessible via `req.body`.
+As you can see, in order to update a given book in the database, we need to define the book we want to update, and that's done using the same logic we used for the `show` handler, so we are not being as [DRY][3] as we should, but don't worry, we'll deal with that a bit later.
+
+In this case the new part is where we replace the content of each of the fields in the found book, with the data included in the `PUT` request payload, accessible via `req.body`. We have used a `for in` loop to iterate over the properties included in the `req.body` object.
 
 ## A cURL script
 Let's try our brand new route with the following script:
@@ -49,9 +50,9 @@ We're going to **update** two of the fields for the last book we created, check 
 ```json
 {
   "author": "Andrew Hunt, Dave Thomas",
-  "genre": "IT",
+  "genre": "IT", // Updating this
   "title": "The Pragmatic Programmer",
-  "read": false
+  "read": false // And this
 }
 ```
 
@@ -132,3 +133,4 @@ And we're done with this section.
 <!-- links -->
 [1]: http://expressjs.com/en/guide/writing-middleware.html
 [2]: https://github.com/lifeBalance/bookshelf-API/tree/05-put-requests
+[3]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
