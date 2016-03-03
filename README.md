@@ -9,6 +9,7 @@ In this project I'll be creating a ReSTful API using Node.js. It'll be as simple
 * [GET requests II. Refactoring request handlers into controllers][c4]
 * [POST requests][c5]
 * [PUT requests][c6]
+* [PATCH and DELETE requests][c7]
 
 
 ---
@@ -30,3 +31,4 @@ In this project I'll be creating a ReSTful API using Node.js. It'll be as simple
 [c4]: README/get_requests_2.md
 [c5]: README/post_requests.md
 [c6]: README/put_requests.md
+[c7]: README/patch_and_delete_requests.md

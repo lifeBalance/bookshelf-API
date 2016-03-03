@@ -135,7 +135,7 @@ And we're done with this section.
 <!-- navigation -->
 [home]: ../README.md
 [back]: post_requests.md
-[next]: #
+[next]: patch_and_delete_requests.md
 
 
 <!-- links -->

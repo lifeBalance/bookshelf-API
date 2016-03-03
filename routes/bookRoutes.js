@@ -14,7 +14,9 @@ var bookRouter = function (Book) {
   router.use('/:bookId', require('../middlewares/findBookById')(Book));
   router.route('/:bookId')
     .get(bookController.show)
-    .put(bookController.update);
+    .put(bookController.update)
+    .patch(bookController.patchUpdate)
+    .delete(bookController.destroy);
 
   return router; // Don't forget to return the router!
 };

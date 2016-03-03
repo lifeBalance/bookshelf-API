@@ -44,11 +44,43 @@ var bookController = function (Book) {
     });
   };
 
+  var patchUpdate = function (req, res) {
+    if (req.body._id) delete req.body._id;
+
+    for (var p in req.body) {
+      req.book[p] = req.body[p];
+    }
+
+    req.book.save(function (err) {
+      if (err) {
+        console.log(err);
+        res.status(500).send(err);
+      } else {
+        console.log(`* The book ${req.book} has been patched!\n`);
+        res.status(200).json(req.book);
+      }
+    });
+  };
+
+  var destroy = function (req, res) {
+    req.book.remove(function (err) {
+      if (err) {
+        console.log(err);
+        res.status(500).send(err);
+      } else {
+        console.log(`* The book ${req.book} has been deleted!\n`);
+        res.status(204).send('Book Deleted!');
+      }
+    });
+  }
+
   return {
     index: index,
     show: show,
     create: create,
-    update: update
+    update: update,
+    patchUpdate: patchUpdate,
+    destroy: destroy
   };
 };
 
