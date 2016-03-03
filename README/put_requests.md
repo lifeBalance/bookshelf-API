@@ -37,12 +37,13 @@ As you can see, in order to update a given book in the database, we need to defi
 In this case the new part is where we replace the content of each of the fields in the found book, with the data included in the `PUT` request payload, accessible via `req.body`. We have used a `for in` loop to iterate over the properties included in the `req.body` object.
 
 ## A cURL script
-Let's try our brand new route with the following script:
+Let's try our brand new route with the following script. We've added the `verbose` option so cURL will give us back the response with a lot of useful info(headers, status codes, etc) when working with APIs:
 ```
 curl \
 --header "Content-type: application/json" \
 --request PUT \
 --data @put-book.json \
+--verbose \
 http://localhost:8000/api/books/56d2f7d3ee9a7a645de13893
 ```
 
@@ -56,6 +57,8 @@ We're going to **update** two of the fields for the last book we created, check 
 }
 ```
 
+> The JSON format doesn't handle **comments**, so don't copy-paste the above ;)
+
 Even though we are modifying only the **genre** and **read** fields, we have to send back the rest of the fields for the book, even if they don't change. That's the thing about `PUT` requests, they modify the whole resource, so for example if we sent only the two fields we want to modify, the payload of our request would be just:
 ```json
 {
@@ -64,7 +67,7 @@ Even though we are modifying only the **genre** and **read** fields, we have to 
 }
 ```
 
-Then the resource will be modified in its entirety, with empty fields for **author** and **title**, and that's not clearly what we want.
+Then the resource will be modified in its entirety, with empty fields for **author** and **title**, and that's not clearly what we want. Bottom line, `PUT` requests require us to send the whole resource data even if we are only modifying a small part of the information. In the next section we'll take care of `PATCH` requests, which allow us to modify part of the resource sending only the data we want to modify.
 
 ## Adding some middleware
 Before we mentioned we were repeating ourselves using the same exact logic in two places. To avoid that, we're gonna take the repeated code and put it in a unique place using Express middleware. If you don't know what middleware is check the excellent [Express docs][1].
@@ -95,7 +98,7 @@ Before we mentioned we were repeating ourselves using the same exact logic in tw
   router.use('/:bookId', require('../middlewares/findBookById')(Book)); // Injecting the Book model
   ```
 
-  Yep, we're requiring inline, nothing wrong with that.
+  Yep, we're requiring inline, nothing wrong with that, and we're also injecting the `Book` model at the same time we require the module.
 
 3. Finally, let's refactor our `bookController.js`, so the `show` and `update` actions will be much simpler:
   ```js
@@ -104,14 +107,19 @@ Before we mentioned we were repeating ourselves using the same exact logic in tw
   };
 
   var update = function (req, res) {
-    req.book.author = req.body.author;
-    req.book.genre  = req.body.genre;
-    req.book.title  = req.body.title;
-    req.book.read   = req.body.read;
-    req.book.save();
+    for (var p in req.body) {
+      req.book[p] = req.body[p];
+    }
 
-    console.log(`* The book ${req.book} has been updated!\n`);
-    res.status(200).json(req.book);
+    req.book.save(function (err) {
+      if (err) {
+        console.log(err);
+        res.status(500).send(err);
+      } else {
+        console.log(`* The book ${req.book} has been updated!\n`);
+        res.status(200).json(req.book);
+      }
+    });
   };
   ```
 
