@@ -115,7 +115,7 @@ And that's it, we've implemented all of the HTTP verbs, so we have a very small 
 <!-- navigation -->
 [home]: ../README.md
 [back]: put_requests.md
-[next]: #
+[next]: hateoas.md
 
 
 <!-- links -->

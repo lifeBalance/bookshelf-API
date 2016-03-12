@@ -12,7 +12,17 @@ var bookController = function (Book) {
         console.log(err);
         res.status(404).send(err);
       } else {
-        res.json(books);
+        var hyperBooks = [];
+
+        books.forEach(function (book, index, array) {
+          var hyperBook = book.toJSON();
+          hyperBook.links = {};
+          hyperBook.links.self = `http://${req.headers.host}/api/books/${hyperBook._id}`;
+
+          hyperBooks.push(hyperBook);
+        });
+
+        res.json(hyperBooks);
       }
     });
   }
@@ -25,7 +35,13 @@ var bookController = function (Book) {
   }
 
   var show = function (req, res) {
-    res.json(req.book);
+    var hyperBook = req.book.toJSON();
+    var genreUrl = `http://${req.headers.host}/api/books/?genre=${hyperBook.genre}`;
+
+    hyperBook.links = {};
+
+    hyperBook.links.FilterByThisGenre = genreUrl.replace(' ', '%20');
+    res.json(hyperBook);
   };
 
   var update = function (req, res) {

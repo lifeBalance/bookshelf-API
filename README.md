@@ -10,6 +10,7 @@ In this project I'll be creating a ReSTful API using Node.js. It'll be as simple
 * [POST requests][c5]
 * [PUT requests][c6]
 * [PATCH and DELETE requests][c7]
+* [Implementing HATEOAS][c8]
 
 
 ---
@@ -32,3 +33,4 @@ In this project I'll be creating a ReSTful API using Node.js. It'll be as simple
 [c5]: README/post_requests.md
 [c6]: README/put_requests.md
 [c7]: README/patch_and_delete_requests.md
+[c8]: README/hateoas.md
